@@ -1,9 +1,9 @@
 //selecting all required elements
 const dropArea = document.querySelector(".drag-area"),
-    beforeImg = dropArea.querySelector(".before-img")
-dragText = dropArea.querySelector("header"),
-button = dropArea.querySelector("button"),
-input = dropArea.querySelector("input");
+    beforeImg = dropArea.querySelector(".before-img"),
+dragText = beforeImg.querySelector("header"),
+button = beforeImg.querySelector("button"),
+input = beforeImg.querySelector("input");
 let file; //this is a global variable and we'll use it inside multiple functions
 button.onclick = ()=>{
   input.click(); //if user click on the button then the input also clicked
@@ -40,23 +40,26 @@ function showFile(dropArea, file){
         imgDiv = document.createElement("div");
         imgDiv.classList.add("img");
         dropArea.appendChild(imgDiv);
+       
     }
-    if(dropArea.querySelector(".before-img")){
-        dropArea.querySelector(".before-img").remove();
-    }
+   
 
     if(file.type.startsWith("image/")){
+       
         let fileReader = new FileReader();
 
         fileReader.readAsDataURL(file);
         fileReader.onload = () =>{
             imgDiv.style.backgroundImage = `url('${fileReader.result}')`
         }
+        dropArea.querySelector(".before-img").remove();
     }else{
-        alert("this is not an image file");
-        beforeImg;
+        alert("This is not an image file!");
+        dropArea.querySelector(".before-img");
         dragText.textContent = "Drag & Drop to Upload File";
         dropArea.querySelector(".img").remove();
         dropArea.classList.remove("active");
     }
+
+   
 }
