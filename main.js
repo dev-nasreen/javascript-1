@@ -1,5 +1,6 @@
 //selecting all required elements
 const dropArea = document.querySelector(".drag-area"),
+    beforeImg = dropArea.querySelector(".before-img")
 dragText = dropArea.querySelector("header"),
 button = dropArea.querySelector("button"),
 input = dropArea.querySelector("input");
@@ -53,5 +54,9 @@ function showFile(dropArea, file){
         }
     }else{
         alert("this is not an image file");
+        beforeImg;
+        dragText.textContent = "Drag & Drop to Upload File";
+        dropArea.querySelector(".img").remove();
+        dropArea.classList.remove("active");
     }
 }
